@@ -1,6 +1,9 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 const ContactCard = ({ contact }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Card style={{ width: "18rem" }}>
@@ -12,7 +15,7 @@ const ContactCard = ({ contact }) => {
           <Card.Title>{contact.name}</Card.Title>
           <Card.Text>{contact.email}</Card.Text>
           <Card.Text>{contact.phone}</Card.Text>
-          <Button >Edit</Button>
+          <Button onClick={()=> navigate(`/edit/${contact._id}`)} >Edit</Button>
           <Button variant="danger" >Delete</Button>
         </Card.Body>
       </Card>
