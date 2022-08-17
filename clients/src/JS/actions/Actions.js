@@ -6,12 +6,12 @@ import {
 } from "../actionTypes/ActionTypes";
 
 export const getContact = () => async (dispatch) => {
-  dispatch({ type:LOAD_CONTACT });
+  dispatch({ type: LOAD_CONTACT });
   try {
-    let result = axios.get("/api/contact/all");
+    let result = await axios.get("/api/contact/all");
     dispatch({ type: SUCCESS_CONTACT, payload: result.data });
   } catch (error) {
-    dispatch({ type: FAIL_CONTACT, payload: error.response });
+    dispatch({ type: FAIL_CONTACT, payload: error });
   }
 };
 
@@ -19,7 +19,7 @@ export const getContact = () => async (dispatch) => {
 
 export const addContact = (newContact) => async (dispatch) => {
   try {
-    await axios.post("/api/conatct/add", newContact);
+    await axios.post("/api/contact/add", newContact);
     dispatch(getContact());
   } catch (error) {
     dispatch({ type: FAIL_CONTACT, payload: error.response });
@@ -45,7 +45,7 @@ export const editContact = (id, newContact) => async (dispatch) => {
 };
 
 export const getOneContact = (id) => async (dispatch) => {
-  dispatch({ type:LOAD_CONTACT });
+  dispatch({ type: LOAD_CONTACT });
   try {
     const getContact = axios.get(`/api/contact/get-one/${id}`);
     dispatch({ type: SUCCESS_CONTACT, payload: getContact.data });

@@ -5,18 +5,16 @@ import ContactCard from "../contactCard/ContactCard";
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contactReducer.contacts);
-  const load = useSelector((state) => state.contactReducer.load);
+  // const load = useSelector((state) => state.contactReducer.load);
   useEffect(() => {
     dispatch(getContact());
   }, [dispatch]);
 
   return (
     <div>
-      {load ? (
-        <h3>loading........</h3>
-      ) : (
-        contacts.map((el) => <ContactCard contact={el} key={el.id} />)
-      )}
+      {
+        contacts.map((el) => <ContactCard contact={el} key={el._id} />)
+      }
     </div>
   );
 };

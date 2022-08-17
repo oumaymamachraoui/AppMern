@@ -7,17 +7,17 @@ import {
 const initialState = {
   contacts: [],
   load: false,
-  errors: null,
+  errors: [],
 };
 
 const contactReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_CONTACT:
-      return { ...state, load: true };
+      return { ...state }
     case SUCCESS_CONTACT:
-      return { ...state, contacts: payload.contacts };
+      return { ...state, load: false, contacts: payload.contacts }
     case FAIL_CONTACT:
-      return { ...state, load: false, errors: payload.errors };
+      return { ...state, load: false, errors: payload };
     default:
       return state;
   }
